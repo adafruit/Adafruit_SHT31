@@ -14,8 +14,8 @@ BSD license, all text above must be included in any redistribution
 
 Check out the links above for our tutorials and wiring diagrams 
 
-To download. click the ZIP button in the top-middle navbar, 
-rename the uncompressed folder Adafruit_SHT31. 
+To download, click the Download ZIP button in GitHub,
+rename the uncompressed folder to Adafruit_SHT31.
 Check that the Adafruit_SHT31 folder contains Adafruit_SHT31.cpp and Adafruit_SHT31.h
 
 Place the Adafruit_SHT31 library folder your arduinosketchfolder/libraries/ folder. 
