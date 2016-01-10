@@ -53,14 +53,14 @@ void Adafruit_SHT31::heater(boolean h) {
 
 
 float Adafruit_SHT31::readTemperature(void) {
-  readTempHum();
+  if (! readTempHum()) return NAN;
 
   return temp;
 }
   
 
 float Adafruit_SHT31::readHumidity(void) {
-  readTempHum();
+  if (! readTempHum()) return NAN;
 
   return humidity;
 }
@@ -83,9 +83,15 @@ boolean Adafruit_SHT31::readTempHum(void) {
   ST = readbuffer[0];
   ST <<= 8;
   ST |= readbuffer[1];
+
+  if (readbuffer[2] != crc8(readbuffer, 2)) return false;
+
   SRH = readbuffer[3];
   SRH <<= 8;
   SRH |= readbuffer[4];
+
+  if (readbuffer[5] != crc8(readbuffer+3, 2)) return false;
+
  // Serial.print("ST = "); Serial.println(ST);
   double stemp = ST;
   stemp *= 175;
@@ -110,5 +116,32 @@ void Adafruit_SHT31::writeCommand(uint16_t cmd) {
   Wire.endTransmission();  
 }
 
+uint8_t Adafruit_SHT31::crc8(const uint8_t *data, int len)
+{
+/*
+*
+ * CRC-8 formula from page 14 of SHT spec pdf
+ *
+ * Test data 0xBE, 0xEF should yield 0x92
+ *
+ * Initialization data 0xFF
+ * Polynomial 0x31 (x8 + x5 +x4 +1)
+ * Final XOR 0x00
+ */
+
+  const uint8_t POLYNOMIAL(0x31);
+  uint8_t crc(0xFF);
+  
+  for ( int j = len; j; --j ) {
+      crc ^= *data++;
+
+      for ( int i = 8; i; --i ) {
+	crc = ( crc & 0x80 )
+	  ? (crc << 1) ^ POLYNOMIAL
+	  : (crc << 1);
+      }
+  }
+  return crc;
+}
 
 /*********************************************************************/
