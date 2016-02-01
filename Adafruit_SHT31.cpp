@@ -35,7 +35,7 @@ uint16_t Adafruit_SHT31::readStatus(void) {
   uint16_t stat = Wire.read();
   stat <<= 8;
   stat |= Wire.read();
-  Serial.println(stat, HEX);
+  //Serial.println(stat, HEX);
   return stat;
 }
 
