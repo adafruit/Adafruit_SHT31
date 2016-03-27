@@ -14,6 +14,18 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
+/* Additional usage information:
+ * This library reads the sensor in high reliability single shot mode,
+ * which takes 500ms.  It always reads both temperature and humidity in
+ * one reading.  After calling either of the read functions, assuming
+ * it does not return NaN, the previous value function will return valid
+ * data from the same reading.
+ *
+ * The sensor also supports less accurate but faster modes as well
+ * as a periodic data acquisition mode, and alerts, which are not
+ * implemented by this library.
+ */
+
 #if (ARDUINO >= 100)
  #include "Arduino.h"
 #else
@@ -40,6 +52,8 @@ class Adafruit_SHT31 {
   boolean begin(uint8_t i2caddr = SHT31_DEFAULT_ADDR);
   float readTemperature(void);
   float readHumidity(void);
+  float previousTemperature(void) { return temp; }
+  float previousHumidity(void) { return humidity; }
   uint16_t readStatus(void);
   void reset(void);
   void heater(boolean);
