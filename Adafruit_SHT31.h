@@ -4,8 +4,7 @@
   Designed specifically to work with the SHT31 Digital sensor from Adafruit
   ----> https://www.adafruit.com/products/2857
 
-  These displays use I2C to communicate, 2 pins are required to  
-  interface
+  These sensors use I2C to communicate, 2 pins are required to interface
   Adafruit invests time and resources providing this open source code, 
   please support Adafruit and open-source hardware by purchasing 
   products from Adafruit!
