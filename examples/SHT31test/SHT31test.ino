@@ -14,16 +14,12 @@
 
 Adafruit_SHT31 sht31 = Adafruit_SHT31();
 
-#if defined(ARDUINO_ARCH_SAMD)
-// for Zero, output on USB Serial console, remove line below if using programming port to program the Zero!
-   #define Serial SerialUSB
-#endif
-
 void setup() {
-#ifndef ESP8266
-  while (!Serial);     // will pause Zero, Leonardo, etc until serial console opens
-#endif
   Serial.begin(9600);
+
+  while (!Serial)
+    delay(10);     // will pause Zero, Leonardo, etc until serial console opens
+
   Serial.println("SHT31 test");
   if (! sht31.begin(0x44)) {   // Set to 0x45 for alternate i2c addr
     Serial.println("Couldn't find SHT31");
