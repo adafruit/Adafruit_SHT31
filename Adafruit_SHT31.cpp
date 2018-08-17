@@ -9,7 +9,8 @@
   please support Adafruit and open-source hardware by purchasing 
   products from Adafruit!
 
-  Written by Limor Fried/Ladyada for Adafruit Industries.  
+  Written by Limor Fried/Ladyada for Adafruit Industries.
+  Adapted by Leonardo Bispo
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
@@ -105,6 +106,58 @@ boolean Adafruit_SHT31::readTempHum(void) {
   
   humidity = shum;
   
+  return true;
+}
+
+/*
+ * This method returns both temperature and humidity in a single call and using a single I2C request. 
+ * Calling this method avoids the double I2C request.
+ * Also remove the 1 second total Delay for the single function.
+ */
+void Adafruit_SHT31::requestTempHum(void){
+  writeCommand(SHT31_MEAS_HIGHREP);
+}
+
+boolean Adafruit_SHT31::readTemperatureAndHumidity(float &t, float &h) {
+  uint8_t readbuffer[6];
+
+  Wire.requestFrom(_i2caddr, (uint8_t)6);
+  if (Wire.available() != 6) 
+    return false;
+  for (uint8_t i=0; i<6; i++) {
+    readbuffer[i] = Wire.read();
+  //  Serial.print("0x"); Serial.println(readbuffer[i], HEX);
+  }
+  uint16_t ST, SRH;
+  ST = readbuffer[0];
+  ST <<= 8;
+  ST |= readbuffer[1];
+
+  if (readbuffer[2] != crc8(readbuffer, 2)) return false;
+
+  SRH = readbuffer[3];
+  SRH <<= 8;
+  SRH |= readbuffer[4];
+
+  if (readbuffer[5] != crc8(readbuffer+3, 2)) return false;
+
+ // Serial.print("ST = "); Serial.println(ST);
+  double stemp = ST;
+  stemp *= 175;
+  stemp /= 0xffff;
+  stemp = -45 + stemp;
+  temp = stemp;
+  
+//  Serial.print("SRH = "); Serial.println(SRH);
+  double shum = SRH;
+  shum *= 100;
+  shum /= 0xFFFF;
+  
+  humidity = shum;
+	
+  t = temp;
+  h = humidity;
+	
   return true;
 }
 
