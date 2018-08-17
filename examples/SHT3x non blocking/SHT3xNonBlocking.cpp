@@ -32,7 +32,7 @@ void loop() {
   //float t = sht31.readTemperature();
   //float h = sht31.readHumidity();
   
-  sht31.requestTempHum;                   //user needs to handle the time between requesting and reading
+  sht31.requestTempHum();                   //user needs to handle the time between requesting and reading
   delay(500);
   sht31.readTemperatureAndHumidity(t, h);
 
