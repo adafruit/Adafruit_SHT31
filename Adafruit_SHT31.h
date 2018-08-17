@@ -45,7 +45,7 @@ class Adafruit_SHT31 {
   void reset(void);
   void heater(boolean);
   void requestTempHum(void);
-  bool readTemperatureAndHumidity(float &t, float &h)
+  bool readTemperatureAndHumidity(float &t, float &h);
   uint8_t crc8(const uint8_t *data, int len);
 
  private:
