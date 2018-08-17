@@ -161,6 +161,8 @@ boolean Adafruit_SHT31::readTemperatureAndHumidity(float &t, float &h) {
   return true;
 }
 
+//***************************************************end of new function**********************//
+
 void Adafruit_SHT31::writeCommand(uint16_t cmd) {
   Wire.beginTransmission(_i2caddr);
   Wire.write(cmd >> 8);
