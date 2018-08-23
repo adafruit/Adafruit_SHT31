@@ -9,7 +9,8 @@
   please support Adafruit and open-source hardware by purchasing 
   products from Adafruit!
 
-  Written by Limor Fried/Ladyada for Adafruit Industries.  
+  Written by Limor Fried/Ladyada for Adafruit Industries.
+  Adapted by Leonardo Bispo
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
@@ -21,6 +22,7 @@
 #include "Wire.h"
 
 #define SHT31_DEFAULT_ADDR    0x44
+//Single shot measurement modes
 #define SHT31_MEAS_HIGHREP_STRETCH 0x2C06
 #define SHT31_MEAS_MEDREP_STRETCH  0x2C0D
 #define SHT31_MEAS_LOWREP_STRETCH  0x2C10
@@ -42,6 +44,8 @@ class Adafruit_SHT31 {
   uint16_t readStatus(void);
   void reset(void);
   void heater(boolean);
+  void requestTempHum(void);
+  boolean readTemperatureAndHumidity(float &t, float &h);
   uint8_t crc8(const uint8_t *data, int len);
 
  private:
