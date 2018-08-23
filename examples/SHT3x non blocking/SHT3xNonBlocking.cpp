@@ -34,7 +34,10 @@ void loop() {
   
   sht31.requestTempHum();                   //user needs to handle the time between requesting and reading
   delay(500);
-  sht31.readTemperatureAndHumidity(t, h);
+  if (! sht31.readTemperatureAndHumidity(t, h)){
+    t = NAN;
+    h = NAN;
+  }
 
   if (! isnan(t)) {  // check if 'is not a number'
     Serial.print("Temp *C = "); Serial.println(t);
