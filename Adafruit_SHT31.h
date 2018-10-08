@@ -13,6 +13,8 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
+#ifndef ADAFRUIT_SHT31_H
+#define ADAFRUIT_SHT31_H
 #if (ARDUINO >= 100)
  #include "Arduino.h"
 #else
@@ -53,3 +55,4 @@ class Adafruit_SHT31 {
   float humidity, temp;
 };
 
+#endif
