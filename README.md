@@ -1,4 +1,4 @@
-# Adafruit SHT31-D Temperature and Humidity Sensor Breakout
+# Adafruit SHT31-D Temperature and Humidity Sensor Breakout [![Build Status](https://travis-ci.org/adafruit/Adafruit_SHT31.svg?branch=master)](https://travis-ci.org/adafruit/Adafruit_SHT31)
 
 ![Adafruit SHT31](https://cdn-learn.adafruit.com/assets/assets/000/028/970/small360/adafruit_products_2857_iso_ORIG.jpg?1449606376)
 
