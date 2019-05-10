@@ -15,6 +15,11 @@
 
 #include "Adafruit_SHT31.h"
 
+/*!
+ * @brief  SHT31 constructor using i2c
+ * @param  *theWire
+ *         optional wire
+ */
 Adafruit_SHT31::Adafruit_SHT31(TwoWire *theWire) {
   _wire = theWire;
   _i2caddr = NULL;
