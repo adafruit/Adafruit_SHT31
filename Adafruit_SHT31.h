@@ -32,6 +32,9 @@
 #define SHT31_HEATEREN             0x306D
 #define SHT31_HEATERDIS            0x3066
 
+//  Forward declarations of Wire for board/variant combinations that don't have a default 'Wire'
+extern TwoWire Wire;
+
 /**
  * Driver for the Adafruit SHT31-D Temperature and Humidity breakout board.
  */
@@ -40,7 +43,7 @@ class Adafruit_SHT31 {
         /**
          *  Constructor.
          */
-        Adafruit_SHT31();
+        Adafruit_SHT31(TwoWire *theWire = &Wire);
 
         /**
          * Initialises the I2C bus, and assigns the I2C address to us.
@@ -93,6 +96,8 @@ class Adafruit_SHT31 {
          * @return The computed CRC8 value.
          */
         uint8_t crc8(const uint8_t *data, int len);
+
+        TwoWire *_wire; /**< Wire object */
 
     private:
         /**
