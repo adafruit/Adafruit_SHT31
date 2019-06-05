@@ -60,6 +60,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_adafruit___s_h_t31-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Adafruit_SHT31 Class Reference</div>  </div>
@@ -70,8 +71,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3c675ce344f1dd28b04764de3d7b5104"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a3c675ce344f1dd28b04764de3d7b5104">Adafruit_SHT31</a> ()</td></tr>
-<tr class="separator:a3c675ce344f1dd28b04764de3d7b5104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a555985260946cd51b8d9da85538338a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a555985260946cd51b8d9da85538338a9">Adafruit_SHT31</a> (TwoWire *theWire=&amp;Wire)</td></tr>
+<tr class="memdesc:a555985260946cd51b8d9da85538338a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">SHT31 constructor using i2c.  <a href="#a555985260946cd51b8d9da85538338a9">More...</a><br /></td></tr>
+<tr class="separator:a555985260946cd51b8d9da85538338a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a104eb2dfd27a732420e1fc3755516690"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a104eb2dfd27a732420e1fc3755516690">begin</a> (uint8_t i2caddr=SHT31_DEFAULT_ADDR)</td></tr>
 <tr class="separator:a104eb2dfd27a732420e1fc3755516690"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b518218705509eb0ab35050bf79f00a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a3b518218705509eb0ab35050bf79f00a">readTemperature</a> (void)</td></tr>
@@ -86,12 +88,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3df2c0b2903707420857477f0b86a6fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fe74b3c5be1794ec00a961d91227716"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a9fe74b3c5be1794ec00a961d91227716">crc8</a> (const uint8_t *data, int len)</td></tr>
 <tr class="separator:a9fe74b3c5be1794ec00a961d91227716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a1414b09c14bede51f83ca66ab50200e0"><td class="memItemLeft" align="right" valign="top">TwoWire *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a1414b09c14bede51f83ca66ab50200e0">_wire</a></td></tr>
+<tr class="separator:a1414b09c14bede51f83ca66ab50200e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Driver for the Adafruit SHT31-D Temperature and Humidity breakout board. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3c675ce344f1dd28b04764de3d7b5104"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c675ce344f1dd28b04764de3d7b5104">&#9670;&nbsp;</a></span>Adafruit_SHT31()</h2>
+<a id="a555985260946cd51b8d9da85538338a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a555985260946cd51b8d9da85538338a9">&#9670;&nbsp;</a></span>Adafruit_SHT31()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -99,12 +106,21 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Adafruit_SHT31::Adafruit_SHT31 </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">TwoWire *&#160;</td>
+          <td class="paramname"><em>theWire</em> = <code>&amp;Wire</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor. </p>
+
+<p>SHT31 constructor using i2c. </p>
+<p>Constructor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*theWire</td><td>optional wire </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -273,6 +289,22 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The computed CRC8 value. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1414b09c14bede51f83ca66ab50200e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1414b09c14bede51f83ca66ab50200e0">&#9670;&nbsp;</a></span>_wire</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TwoWire* Adafruit_SHT31::_wire</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Wire object </p>
 
 </div>
 </div>
