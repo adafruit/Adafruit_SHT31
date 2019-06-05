@@ -15,14 +15,20 @@
 
 #include "Adafruit_SHT31.h"
 
-Adafruit_SHT31::Adafruit_SHT31() {
+/*!
+ * @brief  SHT31 constructor using i2c
+ * @param  *theWire
+ *         optional wire
+ */
+Adafruit_SHT31::Adafruit_SHT31(TwoWire *theWire) {
+  _wire = theWire;
   _i2caddr = NULL;
   humidity = 0.0f;
   temp = 0.0f;
 }
 
 boolean Adafruit_SHT31::begin(uint8_t i2caddr) {
-  Wire.begin();
+  _wire->begin();
   _i2caddr = i2caddr;
   reset();
   // return (readStatus() == 0x40);
@@ -31,10 +37,10 @@ boolean Adafruit_SHT31::begin(uint8_t i2caddr) {
 
 uint16_t Adafruit_SHT31::readStatus(void) {
   writeCommand(SHT31_READSTATUS);
-  Wire.requestFrom(_i2caddr, (uint8_t)3);
-  uint16_t stat = Wire.read();
+  _wire->requestFrom(_i2caddr, (uint8_t)3);
+  uint16_t stat = _wire->read();
   stat <<= 8;
-  stat |= Wire.read();
+  stat |= _wire->read();
   // Serial.println(stat, HEX);
   return stat;
 }
@@ -71,11 +77,11 @@ boolean Adafruit_SHT31::readTempHum(void) {
   writeCommand(SHT31_MEAS_HIGHREP);
 
   delay(20);
-  Wire.requestFrom(_i2caddr, (uint8_t)6);
-  if (Wire.available() != 6)
+  _wire->requestFrom(_i2caddr, (uint8_t)6);
+  if (_wire->available() != 6)
     return false;
   for (uint8_t i = 0; i < 6; i++) {
-    readbuffer[i] = Wire.read();
+    readbuffer[i] = _wire->read();
     //  Serial.print("0x"); Serial.println(readbuffer[i], HEX);
   }
 
@@ -112,10 +118,10 @@ boolean Adafruit_SHT31::readTempHum(void) {
 }
 
 void Adafruit_SHT31::writeCommand(uint16_t cmd) {
-  Wire.beginTransmission(_i2caddr);
-  Wire.write(cmd >> 8);
-  Wire.write(cmd & 0xFF);
-  Wire.endTransmission();
+  _wire->beginTransmission(_i2caddr);
+  _wire->write(cmd >> 8);
+  _wire->write(cmd & 0xFF);
+  _wire->endTransmission();
 }
 
 uint8_t Adafruit_SHT31::crc8(const uint8_t *data, int len) {
