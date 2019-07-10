@@ -1,12 +1,12 @@
-# Adafruit SHT31-D Temperature and Humidity Sensor Breakout [![Build Status](https://travis-ci.org/adafruit/Adafruit_SHT31.svg?branch=master)](https://travis-ci.org/adafruit/Adafruit_SHT31)
+# Adafruit SHT31-D Temperature and Humidity Sensor Breakout [![Build Status](https://travis-ci.com/adafruit/Adafruit_SHT31.svg?branch=master)](https://travis-ci.com/adafruit/Adafruit_SHT31)
 
-![Adafruit SHT31](./assets/board.jpg)
+<a href="https://www.adafruit.com/product/2857"><img src="assets/board.jpg?raw=true" width="500px"></a>
 
 This is a library for the SHT31 Digital Humidity + Temp sensor.
 
 It is designed specifically to work with the SHT31 Digital in the Adafruit shop:
 
-- https://www.adafruit.com/products/2857
+* https://www.adafruit.com/products/2857
 
 These sensors use **I2C** to communicate, 2 pins are required to interface
 
