@@ -22,7 +22,7 @@
  */
 Adafruit_SHT31::Adafruit_SHT31(TwoWire *theWire) {
   _wire = theWire;
-  _i2caddr = NULL;
+  _i2caddr = 0;
   humidity = 0.0f;
   temp = 0.0f;
 }
