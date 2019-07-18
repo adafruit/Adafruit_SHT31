@@ -45,8 +45,8 @@ boolean Adafruit_SHT31::begin(uint8_t i2caddr) {
   _wire->begin();
   _i2caddr = i2caddr;
   reset();
-  // return (readStatus() == 0x40);
-  return true;
+  // None connected sensors seem to return decimal 65535.
+  return readStatus() != 65535;
 }
 
 uint16_t Adafruit_SHT31::readStatus(void) {
