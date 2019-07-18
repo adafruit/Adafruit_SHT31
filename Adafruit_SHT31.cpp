@@ -1,17 +1,31 @@
-/***************************************************
-  This is a library for the SHT31 Digital Humidity & Temp Sensor
-
-  Designed specifically to work with the SHT31 Digital sensor from Adafruit
-  ----> https://www.adafruit.com/products/2857
-
-  These sensors use I2C to communicate, 2 pins are required to interface
-  Adafruit invests time and resources providing this open source code,
-  please support Adafruit and open-source hardware by purchasing
-  products from Adafruit!
-
-  Written by Limor Fried/Ladyada for Adafruit Industries.
-  BSD license, all text above must be included in any redistribution
- ****************************************************/
+/*!
+ *  @file Adafruit_SHT31.cpp
+ *
+ *  @mainpage Adafruit SHT31 Digital Humidity & Temp Sensor
+ *
+ *  @section intro_sec Introduction
+ *
+ *  This is a library for the SHT31 Digital Humidity & Temp Sensor
+ *
+ *  Designed specifically to work with the SHT31 Digital sensor from Adafruit
+ *
+ *  Pick one up today in the adafruit shop!
+ *  ------> https://www.adafruit.com/product/2857
+ *
+ *  These sensors use I2C to communicate, 2 pins are required to interface
+ *
+ *  Adafruit invests time and resources providing this open source code,
+ *  please support Adafruit andopen-source hardware by purchasing products
+ *  from Adafruit!
+ *
+ *  @section author Author
+ *
+ *  Limor Fried/Ladyada (Adafruit Industries).
+ *
+ *  @section license License
+ *
+ *  BSD license, all text above must be included in any redistribution
+ */
 
 #include "Adafruit_SHT31.h"
 
@@ -22,7 +36,7 @@
  */
 Adafruit_SHT31::Adafruit_SHT31(TwoWire *theWire) {
   _wire = theWire;
-  _i2caddr = 0;
+  _i2caddr = NULL;
   humidity = 0.0f;
   temp = 0.0f;
 }
