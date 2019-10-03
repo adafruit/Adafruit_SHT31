@@ -62,7 +62,7 @@ public:
    *
    * @return True if initialisation was successful, otherwise False.
    */
-  boolean begin(uint8_t i2caddr = SHT31_DEFAULT_ADDR);
+  bool begin(uint8_t i2caddr = SHT31_DEFAULT_ADDR);
 
   /**
    * Gets a single temperature reading from the sensor.
@@ -95,26 +95,11 @@ public:
    *
    * @param h True to enable the heater, False to disable it.
    */
-  void heater(boolean h);
-
-  /**
-   * Performs a CRC8 calculation on the supplied values.
-   *
-   * @param data  Pointer to the data to use when calculating the CRC8.
-   * @param len   The number of bytes in 'data'.
-   *
-   * @return The computed CRC8 value.
-   */
-  uint8_t crc8(const uint8_t *data, int len);
+  void heater(bool h);
 
   TwoWire *_wire; /**< Wire object */
 
 private:
-  /**
-   * Placeholder to track the I2C address.
-   */
-  uint8_t _i2caddr;
-
   /**
    * Placeholder to track humidity internally.
    */
@@ -126,11 +111,16 @@ private:
   float temp;
 
   /**
+   * Placeholder to track the I2C address.
+   */
+  uint8_t _i2caddr;
+
+  /**
    * Internal function to perform a temp + humidity read.
    *
    * @return True if successful, otherwise false.
    */
-  boolean readTempHum(void);
+  bool readTempHum(void);
 
   /**
    * Internal function to perform and I2C write.
@@ -144,7 +134,7 @@ private:
    *
    * @return True if successful, otherwise False.
    */
-  boolean readData(void);
+  bool readData(void);
 };
 
 #endif

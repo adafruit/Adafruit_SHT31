@@ -36,17 +36,17 @@
  */
 Adafruit_SHT31::Adafruit_SHT31(TwoWire *theWire) {
   _wire = theWire;
-  _i2caddr = NULL;
-  humidity = 0.0f;
-  temp = 0.0f;
+  _i2caddr = 0;
+
+  humidity = NAN;
+  temp = NAN;
 }
 
-boolean Adafruit_SHT31::begin(uint8_t i2caddr) {
+bool Adafruit_SHT31::begin(uint8_t i2caddr) {
   _wire->begin();
   _i2caddr = i2caddr;
   reset();
-  // None connected sensors seem to return decimal 65535.
-  return readStatus() != 65535;
+  return readStatus() != 0xFFFF;
 }
 
 uint16_t Adafruit_SHT31::readStatus(void) {
@@ -64,7 +64,7 @@ void Adafruit_SHT31::reset(void) {
   delay(10);
 }
 
-void Adafruit_SHT31::heater(boolean h) {
+void Adafruit_SHT31::heater(bool h) {
   if (h)
     writeCommand(SHT31_HEATEREN);
   else
@@ -85,60 +85,15 @@ float Adafruit_SHT31::readHumidity(void) {
   return humidity;
 }
 
-boolean Adafruit_SHT31::readTempHum(void) {
-  uint8_t readbuffer[6];
-
-  writeCommand(SHT31_MEAS_HIGHREP);
-
-  delay(20);
-  _wire->requestFrom(_i2caddr, (uint8_t)6);
-  if (_wire->available() != 6)
-    return false;
-  for (uint8_t i = 0; i < 6; i++) {
-    readbuffer[i] = _wire->read();
-    //  Serial.print("0x"); Serial.println(readbuffer[i], HEX);
-  }
-
-  uint16_t ST, SRH;
-  ST = readbuffer[0];
-  ST <<= 8;
-  ST |= readbuffer[1];
-
-  if (readbuffer[2] != crc8(readbuffer, 2))
-    return false;
-
-  SRH = readbuffer[3];
-  SRH <<= 8;
-  SRH |= readbuffer[4];
-
-  if (readbuffer[5] != crc8(readbuffer + 3, 2))
-    return false;
-
-  // Serial.print("ST = "); Serial.println(ST);
-  double stemp = ST;
-  stemp *= 175;
-  stemp /= 0xffff;
-  stemp = -45 + stemp;
-  temp = stemp;
-
-  //  Serial.print("SRH = "); Serial.println(SRH);
-  double shum = SRH;
-  shum *= 100;
-  shum /= 0xFFFF;
-
-  humidity = shum;
-
-  return true;
-}
-
-void Adafruit_SHT31::writeCommand(uint16_t cmd) {
-  _wire->beginTransmission(_i2caddr);
-  _wire->write(cmd >> 8);
-  _wire->write(cmd & 0xFF);
-  _wire->endTransmission();
-}
-
-uint8_t Adafruit_SHT31::crc8(const uint8_t *data, int len) {
+/**
+ * Performs a CRC8 calculation on the supplied values.
+ *
+ * @param data  Pointer to the data to use when calculating the CRC8.
+ * @param len   The number of bytes in 'data'.
+ *
+ * @return The computed CRC8 value.
+ */
+static uint8_t crc8(const uint8_t *data, int len) {
   /*
    *
    * CRC-8 formula from page 14 of SHT spec pdf
@@ -161,4 +116,43 @@ uint8_t Adafruit_SHT31::crc8(const uint8_t *data, int len) {
     }
   }
   return crc;
+}
+
+bool Adafruit_SHT31::readTempHum(void) {
+  uint8_t readbuffer[6];
+
+  writeCommand(SHT31_MEAS_HIGHREP);
+
+  delay(20);
+  _wire->requestFrom(_i2caddr, sizeof(readbuffer));
+  if (_wire->available() != sizeof(readbuffer))
+    return false;
+  for (size_t i = 0; i < sizeof(readbuffer); i++) {
+    readbuffer[i] = _wire->read();
+  }
+
+  if (readbuffer[2] != crc8(readbuffer, 2) ||
+      readbuffer[5] != crc8(readbuffer + 3, 2))
+    return false;
+
+  uint32_t stemp = ((uint32_t)readbuffer[0] << 8) | readbuffer[1];
+  // simplified (65536 instead of 65535) integer version of:
+  //temp = (stemp * 175.0f) / 65535.0f - 45.0f;
+  stemp = ((4375 * stemp) >> 14) - 4500;
+  temp = (float) stemp / 100.0f;
+
+  uint32_t shum = ((uint32_t)readbuffer[3] << 8) | readbuffer[4];
+  // simplified (65536 instead of 65535) integer version of:
+  //humidity = (shum * 100.0f) / 65535.0f;
+  shum = (625 * shum) >> 12;
+  humidity = (float) shum / 100.0f;
+
+  return true;
+}
+
+void Adafruit_SHT31::writeCommand(uint16_t cmd) {
+  _wire->beginTransmission(_i2caddr);
+  _wire->write(cmd >> 8);
+  _wire->write(cmd & 0xFF);
+  _wire->endTransmission();
 }
