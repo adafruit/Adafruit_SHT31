@@ -74,8 +74,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a555985260946cd51b8d9da85538338a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a555985260946cd51b8d9da85538338a9">Adafruit_SHT31</a> (TwoWire *theWire=&amp;<a class="el" href="_adafruit___s_h_t31_8h.html#a35bd3de386d23ba02c35f820303db472">Wire</a>)</td></tr>
 <tr class="memdesc:a555985260946cd51b8d9da85538338a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">SHT31 constructor using i2c.  <a href="#a555985260946cd51b8d9da85538338a9">More...</a><br /></td></tr>
 <tr class="separator:a555985260946cd51b8d9da85538338a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a104eb2dfd27a732420e1fc3755516690"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a104eb2dfd27a732420e1fc3755516690">begin</a> (uint8_t i2caddr=<a class="el" href="_adafruit___s_h_t31_8h.html#a126bb81a04ac54c61287dd2b106bbfe2">SHT31_DEFAULT_ADDR</a>)</td></tr>
-<tr class="separator:a104eb2dfd27a732420e1fc3755516690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bb88d16363728dc468beef68b0801d4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a0bb88d16363728dc468beef68b0801d4">begin</a> (uint8_t i2caddr=<a class="el" href="_adafruit___s_h_t31_8h.html#a126bb81a04ac54c61287dd2b106bbfe2">SHT31_DEFAULT_ADDR</a>)</td></tr>
+<tr class="separator:a0bb88d16363728dc468beef68b0801d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b518218705509eb0ab35050bf79f00a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a3b518218705509eb0ab35050bf79f00a">readTemperature</a> (void)</td></tr>
 <tr class="separator:a3b518218705509eb0ab35050bf79f00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b522bec65225d5c2aadfccd31bb91e0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a2b522bec65225d5c2aadfccd31bb91e0">readHumidity</a> (void)</td></tr>
@@ -84,10 +84,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae41f7910027c9a39afdb11aef45742ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cfa42c7211e1c5c3de411f3b099c827"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a4cfa42c7211e1c5c3de411f3b099c827">reset</a> (void)</td></tr>
 <tr class="separator:a4cfa42c7211e1c5c3de411f3b099c827"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3df2c0b2903707420857477f0b86a6fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a3df2c0b2903707420857477f0b86a6fc">heater</a> (boolean h)</td></tr>
-<tr class="separator:a3df2c0b2903707420857477f0b86a6fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fe74b3c5be1794ec00a961d91227716"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a9fe74b3c5be1794ec00a961d91227716">crc8</a> (const uint8_t *data, int len)</td></tr>
-<tr class="separator:a9fe74b3c5be1794ec00a961d91227716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a703abea4a6634ed56e13bab2dc5730fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a703abea4a6634ed56e13bab2dc5730fb">heater</a> (bool h)</td></tr>
+<tr class="separator:a703abea4a6634ed56e13bab2dc5730fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -125,14 +123,14 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a104eb2dfd27a732420e1fc3755516690"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a104eb2dfd27a732420e1fc3755516690">&#9670;&nbsp;</a></span>begin()</h2>
+<a id="a0bb88d16363728dc468beef68b0801d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bb88d16363728dc468beef68b0801d4">&#9670;&nbsp;</a></span>begin()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boolean Adafruit_SHT31::begin </td>
+          <td class="memname">bool Adafruit_SHT31::begin </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>i2caddr</em> = <code><a class="el" href="_adafruit___s_h_t31_8h.html#a126bb81a04ac54c61287dd2b106bbfe2">SHT31_DEFAULT_ADDR</a></code></td><td>)</td>
@@ -230,8 +228,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a3df2c0b2903707420857477f0b86a6fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3df2c0b2903707420857477f0b86a6fc">&#9670;&nbsp;</a></span>heater()</h2>
+<a id="a703abea4a6634ed56e13bab2dc5730fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a703abea4a6634ed56e13bab2dc5730fb">&#9670;&nbsp;</a></span>heater()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,7 +237,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Adafruit_SHT31::heater </td>
           <td>(</td>
-          <td class="paramtype">boolean&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>h</em></td><td>)</td>
           <td></td>
         </tr>
@@ -252,43 +250,6 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a9fe74b3c5be1794ec00a961d91227716"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fe74b3c5be1794ec00a961d91227716">&#9670;&nbsp;</a></span>crc8()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t Adafruit_SHT31::crc8 </td>
-          <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Performs a CRC8 calculation on the supplied values.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td>Pointer to the data to use when calculating the CRC8. </td></tr>
-    <tr><td class="paramname">len</td><td>The number of bytes in 'data'.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The computed CRC8 value. </dd></dl>
 
 </div>
 </div>
