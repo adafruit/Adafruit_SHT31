@@ -69,6 +69,16 @@ void Adafruit_SHT31::heater(bool h) {
     writeCommand(SHT31_HEATEREN);
   else
     writeCommand(SHT31_HEATERDIS);
+  delay(1); 
+}
+
+/*! 
+ *  @brief  Return sensor heater state 
+ *  @return heater state (TRUE = enabled, FALSE = disabled) 
+ */ 
+bool Adafruit_SHT31::isHeaterEnabled() { 
+  uint16_t regValue = readStatus(); 
+  return (bool)bitRead(regValue, SHT31_REG_HEATER_BIT); 
 }
 
 float Adafruit_SHT31::readTemperature(void) {
