@@ -135,17 +135,17 @@ bool Adafruit_SHT31::readTempHum(void) {
       readbuffer[5] != crc8(readbuffer + 3, 2))
     return false;
 
-  int32_t stemp = (int32_t) (((uint32_t)readbuffer[0] << 8) | readbuffer[1]);
+  int32_t stemp = (int32_t)(((uint32_t)readbuffer[0] << 8) | readbuffer[1]);
   // simplified (65536 instead of 65535) integer version of:
-  //temp = (stemp * 175.0f) / 65535.0f - 45.0f;
+  // temp = (stemp * 175.0f) / 65535.0f - 45.0f;
   stemp = ((4375 * stemp) >> 14) - 4500;
-  temp = (float) stemp / 100.0f;
+  temp = (float)stemp / 100.0f;
 
   uint32_t shum = ((uint32_t)readbuffer[3] << 8) | readbuffer[4];
   // simplified (65536 instead of 65535) integer version of:
-  //humidity = (shum * 100.0f) / 65535.0f;
+  // humidity = (shum * 100.0f) / 65535.0f;
   shum = (625 * shum) >> 12;
-  humidity = (float) shum / 100.0f;
+  humidity = (float)shum / 100.0f;
 
   return true;
 }
