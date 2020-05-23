@@ -36,11 +36,11 @@
   0x240B /**< Measurement Medium Repeatability with Clock Stretch Disabled */
 #define SHT31_MEAS_LOWREP                                                      \
   0x2416 /**< Measurement Low Repeatability with Clock Stretch Disabled */
-#define SHT31_READSTATUS 0xF32D  /**< Read Out of Status Register */
-#define SHT31_CLEARSTATUS 0x3041 /**< Clear Status */
-#define SHT31_SOFTRESET 0x30A2   /**< Soft Reset */
-#define SHT31_HEATEREN 0x306D    /**< Heater Enable */
-#define SHT31_HEATERDIS 0x3066   /**< Heater Disable */
+#define SHT31_READSTATUS 0xF32D   /**< Read Out of Status Register */
+#define SHT31_CLEARSTATUS 0x3041  /**< Clear Status */
+#define SHT31_SOFTRESET 0x30A2    /**< Soft Reset */
+#define SHT31_HEATEREN 0x306D     /**< Heater Enable */
+#define SHT31_HEATERDIS 0x3066    /**< Heater Disable */
 #define SHT31_REG_HEATER_BIT 0x0d /**< Status Register Heater Bit */
 
 extern TwoWire Wire; /**< Forward declarations of Wire for board/variant
