@@ -41,6 +41,7 @@
 #define SHT31_SOFTRESET 0x30A2   /**< Soft Reset */
 #define SHT31_HEATEREN 0x306D    /**< Heater Enable */
 #define SHT31_HEATERDIS 0x3066   /**< Heater Disable */
+#define SHT31_REG_HEATER_BIT 0x0d /**< Status Register Heater Bit */
 
 extern TwoWire Wire; /**< Forward declarations of Wire for board/variant
                         combinations that don't have a default 'Wire' */
@@ -96,6 +97,13 @@ public:
    * @param h True to enable the heater, False to disable it.
    */
   void heater(bool h);
+
+  /**
+   * Gets the current status register heater bit.
+   *
+   * @return Boolean value, True = enabled, False = disabled.
+   */
+  bool isHeaterEnabled();
 
   TwoWire *_wire; /**< Wire object */
 
