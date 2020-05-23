@@ -11,5 +11,6 @@ var searchData=
   ['sht31_5fmeas_5fmedrep',['SHT31_MEAS_MEDREP',['../_adafruit___s_h_t31_8h.html#abb77d0d6f5621d847e0faccfef864586',1,'Adafruit_SHT31.h']]],
   ['sht31_5fmeas_5fmedrep_5fstretch',['SHT31_MEAS_MEDREP_STRETCH',['../_adafruit___s_h_t31_8h.html#a12be5d5a3bf97262d44ff4c212b107a9',1,'Adafruit_SHT31.h']]],
   ['sht31_5freadstatus',['SHT31_READSTATUS',['../_adafruit___s_h_t31_8h.html#a6c1bb86c7a247385905fe05e0c520945',1,'Adafruit_SHT31.h']]],
+  ['sht31_5freg_5fheater_5fbit',['SHT31_REG_HEATER_BIT',['../_adafruit___s_h_t31_8h.html#a91ab05c33fe4f85f57de0bfebe28ffb0',1,'Adafruit_SHT31.h']]],
   ['sht31_5fsoftreset',['SHT31_SOFTRESET',['../_adafruit___s_h_t31_8h.html#aab64dcf72dca550bfc3e5f30e5c9ec12',1,'Adafruit_SHT31.h']]]
 ];
