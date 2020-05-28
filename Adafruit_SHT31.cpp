@@ -36,34 +36,64 @@
  */
 Adafruit_SHT31::Adafruit_SHT31(TwoWire *theWire) {
   _wire = theWire;
-  _i2caddr = 0;
 
   humidity = NAN;
   temp = NAN;
 }
 
+/**
+ * Initialises the I2C bus, and assigns the I2C address to us.
+ *
+ * @param i2caddr   The I2C address to use for the sensor.
+ *
+ * @return True if initialisation was successful, otherwise False.
+ */
 bool Adafruit_SHT31::begin(uint8_t i2caddr) {
-  _wire->begin();
-  _i2caddr = i2caddr;
+  if (i2c_dev) {
+    delete i2c_dev; // remove old interface
+  }
+
+  i2c_dev = new Adafruit_I2CDevice(i2caddr, _wire);
+
+  if (!i2c_dev->begin()) {
+    return false;
+  }
+
   reset();
   return readStatus() != 0xFFFF;
 }
 
+/**
+ * Gets the current status register contents.
+ *
+ * @return The 16-bit status register.
+ */
 uint16_t Adafruit_SHT31::readStatus(void) {
   writeCommand(SHT31_READSTATUS);
-  _wire->requestFrom(_i2caddr, (uint8_t)3);
-  uint16_t stat = _wire->read();
+
+  uint8_t data[3];
+  i2c_dev->read(data, 3);
+
+  uint16_t stat = data[0];
   stat <<= 8;
-  stat |= _wire->read();
+  stat |= data[1];
   // Serial.println(stat, HEX);
   return stat;
 }
 
+/**
+ * Performs a reset of the sensor to put it into a known state.
+ */
 void Adafruit_SHT31::reset(void) {
   writeCommand(SHT31_SOFTRESET);
   delay(10);
 }
 
+/**
+ * Enables or disabled the heating element.
+ *
+ * @param h True to enable the heater, False to disable it.
+ */
 void Adafruit_SHT31::heater(bool h) {
   if (h)
     writeCommand(SHT31_HEATEREN);
@@ -81,6 +111,11 @@ bool Adafruit_SHT31::isHeaterEnabled() {
   return (bool)bitRead(regValue, SHT31_REG_HEATER_BIT);
 }
 
+/**
+ * Gets a single temperature reading from the sensor.
+ *
+ * @return A float value indicating the temperature.
+ */
 float Adafruit_SHT31::readTemperature(void) {
   if (!readTempHum())
     return NAN;
@@ -88,6 +123,11 @@ float Adafruit_SHT31::readTemperature(void) {
   return temp;
 }
 
+/**
+ * Gets a single relative humidity reading from the sensor.
+ *
+ * @return A float value representing relative humidity.
+ */
 float Adafruit_SHT31::readHumidity(void) {
   if (!readTempHum())
     return NAN;
@@ -128,18 +168,19 @@ static uint8_t crc8(const uint8_t *data, int len) {
   return crc;
 }
 
+/**
+ * Internal function to perform a temp + humidity read.
+ *
+ * @return True if successful, otherwise false.
+ */
 bool Adafruit_SHT31::readTempHum(void) {
   uint8_t readbuffer[6];
 
   writeCommand(SHT31_MEAS_HIGHREP);
 
   delay(20);
-  _wire->requestFrom(_i2caddr, sizeof(readbuffer));
-  if (_wire->available() != sizeof(readbuffer))
-    return false;
-  for (size_t i = 0; i < sizeof(readbuffer); i++) {
-    readbuffer[i] = _wire->read();
-  }
+
+  i2c_dev->read(readbuffer, sizeof(readbuffer));
 
   if (readbuffer[2] != crc8(readbuffer, 2) ||
       readbuffer[5] != crc8(readbuffer + 3, 2))
@@ -160,9 +201,16 @@ bool Adafruit_SHT31::readTempHum(void) {
   return true;
 }
 
-void Adafruit_SHT31::writeCommand(uint16_t cmd) {
-  _wire->beginTransmission(_i2caddr);
-  _wire->write(cmd >> 8);
-  _wire->write(cmd & 0xFF);
-  _wire->endTransmission();
+/**
+ * Internal function to perform and I2C write.
+ *
+ * @param cmd   The 16-bit command ID to send.
+ */
+bool Adafruit_SHT31::writeCommand(uint16_t command) {
+  uint8_t cmd[2];
+
+  cmd[0] = command >> 8;
+  cmd[1] = command & 0xFF;
+
+  return i2c_dev->write(cmd, 2);
 }
