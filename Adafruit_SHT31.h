@@ -21,7 +21,7 @@
 #define ADAFRUIT_SHT31_H
 
 #include "Arduino.h"
-#include "Wire.h"
+#include <Adafruit_I2CDevice.h>
 
 #define SHT31_DEFAULT_ADDR 0x44 /**< SHT31 Default Address */
 #define SHT31_MEAS_HIGHREP_STRETCH                                             \
@@ -51,61 +51,15 @@ extern TwoWire Wire; /**< Forward declarations of Wire for board/variant
  */
 class Adafruit_SHT31 {
 public:
-  /**
-   *  Constructor.
-   */
   Adafruit_SHT31(TwoWire *theWire = &Wire);
 
-  /**
-   * Initialises the I2C bus, and assigns the I2C address to us.
-   *
-   * @param i2caddr   The I2C address to use for the sensor.
-   *
-   * @return True if initialisation was successful, otherwise False.
-   */
   bool begin(uint8_t i2caddr = SHT31_DEFAULT_ADDR);
-
-  /**
-   * Gets a single temperature reading from the sensor.
-   *
-   * @return A float value indicating the temperature.
-   */
   float readTemperature(void);
-
-  /**
-   * Gets a single relative humidity reading from the sensor.
-   *
-   * @return A float value representing relative humidity.
-   */
   float readHumidity(void);
-
-  /**
-   * Gets the current status register contents.
-   *
-   * @return The 16-bit status register.
-   */
   uint16_t readStatus(void);
-
-  /**
-   * Performs a reset of the sensor to put it into a known state.
-   */
   void reset(void);
-
-  /**
-   * Enables or disabled the heating element.
-   *
-   * @param h True to enable the heater, False to disable it.
-   */
   void heater(bool h);
-
-  /**
-   * Gets the current status register heater bit.
-   *
-   * @return Boolean value, True = enabled, False = disabled.
-   */
   bool isHeaterEnabled();
-
-  TwoWire *_wire; /**< Wire object */
 
 private:
   /**
@@ -118,31 +72,11 @@ private:
    */
   float temp;
 
-  /**
-   * Placeholder to track the I2C address.
-   */
-  uint8_t _i2caddr;
-
-  /**
-   * Internal function to perform a temp + humidity read.
-   *
-   * @return True if successful, otherwise false.
-   */
   bool readTempHum(void);
+  bool writeCommand(uint16_t cmd);
 
-  /**
-   * Internal function to perform and I2C write.
-   *
-   * @param cmd   The 16-bit command ID to send.
-   */
-  void writeCommand(uint16_t cmd);
-
-  /**
-   * Internal function to read data over the I2C bus.
-   *
-   * @return True if successful, otherwise False.
-   */
-  bool readData(void);
+  TwoWire *_wire;                     /**< Wire object */
+  Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
 };
 
 #endif
