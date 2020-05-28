@@ -60,7 +60,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_adafruit___s_h_t31-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Adafruit_SHT31 Class Reference</div>  </div>
@@ -89,11 +88,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a77bec47fc9ed32f15ff471205e4cc87c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a77bec47fc9ed32f15ff471205e4cc87c">isHeaterEnabled</a> ()</td></tr>
 <tr class="memdesc:a77bec47fc9ed32f15ff471205e4cc87c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return sensor heater state.  <a href="#a77bec47fc9ed32f15ff471205e4cc87c">More...</a><br /></td></tr>
 <tr class="separator:a77bec47fc9ed32f15ff471205e4cc87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a1414b09c14bede51f83ca66ab50200e0"><td class="memItemLeft" align="right" valign="top">TwoWire *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a1414b09c14bede51f83ca66ab50200e0">_wire</a></td></tr>
-<tr class="separator:a1414b09c14bede51f83ca66ab50200e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Driver for the Adafruit SHT31-D Temperature and Humidity breakout board. </p>
@@ -115,7 +109,6 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>SHT31 constructor using i2c. </p>
-<p>Constructor.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">*theWire</td><td>optional wire </td></tr>
@@ -272,26 +265,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return sensor heater state. </p>
-<p>Gets the current status register heater bit.</p>
-<dl class="section return"><dt>Returns</dt><dd>Boolean value, True = enabled, False = disabled.</dd>
-<dd>
-heater state (TRUE = enabled, FALSE = disabled) </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a1414b09c14bede51f83ca66ab50200e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1414b09c14bede51f83ca66ab50200e0">&#9670;&nbsp;</a></span>_wire</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TwoWire* Adafruit_SHT31::_wire</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Wire object </p>
+<dl class="section return"><dt>Returns</dt><dd>heater state (TRUE = enabled, FALSE = disabled) </dd></dl>
 
 </div>
 </div>
