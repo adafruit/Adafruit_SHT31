@@ -136,6 +136,22 @@ float Adafruit_SHT31::readHumidity(void) {
 }
 
 /**
+ * Gets a reading of both temperature and relative humidity from the sensor.
+ *
+ * @param temperature_out  Where to write the temperature float.
+ * @param humidity_out     Where to write the relative humidity float.
+ */
+void Adafruit_SHT31::readBoth(float *temperature_out, float *humidity_out) {
+  if (!readTempHum()) {
+    *temperature_out = *humidity_out = NAN;
+    return;
+  }
+
+  *temperature_out = temp;
+  *humidity_out = humidity;
+}
+
+/**
  * Performs a CRC8 calculation on the supplied values.
  *
  * @param data  Pointer to the data to use when calculating the CRC8.
