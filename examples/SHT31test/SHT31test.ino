@@ -57,7 +57,7 @@ void loop() {
 
   // Toggle heater enabled state every 30 seconds
   // An ~3.0 degC temperature increase can be noted when heater is enabled
-  if (++loopCnt == 30) {
+  if (loopCnt >= 30) {
     enableHeater = !enableHeater;
     sht31.heater(enableHeater);
     Serial.print("Heater Enabled State: ");
@@ -68,4 +68,5 @@ void loop() {
 
     loopCnt = 0;
   }
+  loopCnt++;
 }
