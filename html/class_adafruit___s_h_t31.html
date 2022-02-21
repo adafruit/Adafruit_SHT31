@@ -79,6 +79,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3b518218705509eb0ab35050bf79f00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b522bec65225d5c2aadfccd31bb91e0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a2b522bec65225d5c2aadfccd31bb91e0">readHumidity</a> (void)</td></tr>
 <tr class="separator:a2b522bec65225d5c2aadfccd31bb91e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e6fc8e94e6491466f63c398222b0bf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a5e6fc8e94e6491466f63c398222b0bf7">readBoth</a> (float *temperature_out, float *humidity_out)</td></tr>
+<tr class="separator:a5e6fc8e94e6491466f63c398222b0bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae41f7910027c9a39afdb11aef45742ab"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#ae41f7910027c9a39afdb11aef45742ab">readStatus</a> (void)</td></tr>
 <tr class="separator:ae41f7910027c9a39afdb11aef45742ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cfa42c7211e1c5c3de411f3b099c827"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_h_t31.html#a4cfa42c7211e1c5c3de411f3b099c827">reset</a> (void)</td></tr>
@@ -182,6 +184,42 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Gets a single relative humidity reading from the sensor.</p>
 <dl class="section return"><dt>Returns</dt><dd>A float value representing relative humidity. </dd></dl>
+
+</div>
+</div>
+<a id="a5e6fc8e94e6491466f63c398222b0bf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e6fc8e94e6491466f63c398222b0bf7">&#9670;&nbsp;</a></span>readBoth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Adafruit_SHT31::readBoth </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>temperature_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>humidity_out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets a reading of both temperature and relative humidity from the sensor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">temperature_out</td><td>Where to write the temperature float. </td></tr>
+    <tr><td class="paramname">humidity_out</td><td>Where to write the relative humidity float. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
