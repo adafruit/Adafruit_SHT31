@@ -42,6 +42,15 @@ Adafruit_SHT31::Adafruit_SHT31(TwoWire *theWire) {
 }
 
 /**
+ * Destructor to free memory in use.
+ */
+Adafruit_SHT31::~Adafruit_SHT31() {
+  if (i2c_dev) {
+    delete i2c_dev; // remove old interface
+  }
+}
+
+/**
  * Initialises the I2C bus, and assigns the I2C address to us.
  *
  * @param i2caddr   The I2C address to use for the sensor.

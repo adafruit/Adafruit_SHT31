@@ -52,6 +52,7 @@ extern TwoWire Wire; /**< Forward declarations of Wire for board/variant
 class Adafruit_SHT31 {
 public:
   Adafruit_SHT31(TwoWire *theWire = &Wire);
+  ~Adafruit_SHT31();
 
   bool begin(uint8_t i2caddr = SHT31_DEFAULT_ADDR);
   float readTemperature(void);
