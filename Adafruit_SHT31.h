@@ -42,6 +42,8 @@
 #define SHT31_HEATEREN 0x306D     /**< Heater Enable */
 #define SHT31_HEATERDIS 0x3066    /**< Heater Disable */
 #define SHT31_REG_HEATER_BIT 0x0d /**< Status Register Heater Bit */
+#define SHT31_ENABLE_ART 0x2B32   /**< accelerated response time*/
+
 
 extern TwoWire Wire; /**< Forward declarations of Wire for board/variant
                         combinations that don't have a default 'Wire' */
@@ -62,6 +64,7 @@ public:
   void reset(void);
   void heater(bool h);
   bool isHeaterEnabled();
+  void enableART();
 
 private:
   /**
