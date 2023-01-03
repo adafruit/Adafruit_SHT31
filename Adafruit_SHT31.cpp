@@ -120,13 +120,10 @@ bool Adafruit_SHT31::isHeaterEnabled() {
   return (bool)bitRead(regValue, SHT31_REG_HEATER_BIT);
 }
 
-/*!
- *  @brief  Enable the ART (accelerated response time) feature.
+/**
+ * Enable the ART (accelerated response time) feature.
  */
-void Adafruit_SHT31::enableART()
-{
-  writeCommand(SHT31_ENABLE_ART);
-}
+void Adafruit_SHT31::enableART(void) { writeCommand(SHT31_ENABLE_ART); }
 
 /**
  * Gets a single temperature reading from the sensor.
