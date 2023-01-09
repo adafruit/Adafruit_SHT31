@@ -43,6 +43,10 @@
 #define SHT31_HEATERDIS 0x3066    /**< Heater Disable */
 #define SHT31_REG_HEATER_BIT 0x0d /**< Status Register Heater Bit */
 #define SHT31_ENABLE_ART 0x2B32   /**< accelerated response time*/
+#define SHT31_STOP_PERIODIC_ACQUISITION                                        \
+  0x3093 /**< Stop periodic data acquisition */
+#define SHT31_FETCH_DATA                                                       \
+  0xE000 /**< Command to fetch data from periodic data acquisition*/
 
 extern TwoWire Wire; /**< Forward declarations of Wire for board/variant
                         combinations that don't have a default 'Wire' */
@@ -64,6 +68,8 @@ public:
   void heater(bool h);
   bool isHeaterEnabled();
   void enableART(void);
+  void fecthData(float *temperature_out, float *humidity_out);
+  void stopPeriodicDataAcquisition(void);
 
 private:
   /**
@@ -76,7 +82,7 @@ private:
    */
   float temp;
 
-  bool readTempHum(void);
+  bool readTempHum(uint16_t cmd = SHT31_MEAS_HIGHREP);
   bool writeCommand(uint16_t cmd);
 
   TwoWire *_wire;                     /**< Wire object */

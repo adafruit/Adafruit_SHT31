@@ -126,6 +126,22 @@ bool Adafruit_SHT31::isHeaterEnabled() {
 void Adafruit_SHT31::enableART(void) { writeCommand(SHT31_ENABLE_ART); }
 
 /**
+ * Stop periodic data acquisition
+ */
+void Adafruit_SHT31::stopPeriodicDataAcquisition(void) {
+  writeCommand(SHT31_STOP_PERIODIC_ACQUISITION);
+}
+
+void Adafruit_SHT31::fecthData(float *temperature_out, float *humidity_out) {
+  if (!readTempHum(SHT31_FETCH_DATA)) {
+    *temperature_out = *humidity_out = NAN;
+    return;
+  }
+
+  *temperature_out = temp;
+  *humidity_out = humidity;
+}
+/**
  * Gets a single temperature reading from the sensor.
  *
  * @return A float value indicating the temperature.
@@ -203,10 +219,10 @@ static uint8_t crc8(const uint8_t *data, int len) {
  *
  * @return True if successful, otherwise false.
  */
-bool Adafruit_SHT31::readTempHum(void) {
+bool Adafruit_SHT31::readTempHum(uint16_t cmd) {
   uint8_t readbuffer[6];
 
-  writeCommand(SHT31_MEAS_HIGHREP);
+  writeCommand(cmd);
 
   delay(20);
 
