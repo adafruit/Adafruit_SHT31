@@ -132,6 +132,9 @@ void Adafruit_SHT31::stopPeriodicDataAcquisition(void) {
   writeCommand(SHT31_STOP_PERIODIC_ACQUISITION);
 }
 
+/**
+ * Get data from sensor read by periodic data acquisition
+ */
 void Adafruit_SHT31::fecthData(float *temperature_out, float *humidity_out) {
   if (!readTempHum(SHT31_FETCH_DATA)) {
     *temperature_out = *humidity_out = NAN;
