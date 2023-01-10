@@ -133,10 +133,10 @@ void Adafruit_SHT31::stopPeriodicDataAcquisition(void) {
 }
 
 /**
- * Get data from sensor read by periodic data acquisition
- * 
- * @param temperature_out  Pointer where to write the temperature float.
- * @param humidity_out     Pointer where to write the relative humidity float.
+ * @brief data from sensor read by periodic data acquisition
+ *
+ * @param *temperature_out  Pointer where to write the temperature float.
+ * @param *humidity_out     Pointer where to write the relative humidity float.
  */
 void Adafruit_SHT31::fecthData(float *temperature_out, float *humidity_out) {
   if (!readTempHum(SHT31_FETCH_DATA)) {
