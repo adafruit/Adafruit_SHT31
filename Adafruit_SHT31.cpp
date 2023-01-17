@@ -203,7 +203,7 @@ bool Adafruit_SHT31::readTempHum(void) {
   uint8_t readbuffer[6];
 
   if (!writeCommand(SHT31_MEAS_HIGHREP))
-    return false;;
+    return false;
 
   delay(20);
 
