@@ -149,6 +149,7 @@ float Adafruit_SHT31::readHumidity(void) {
  *
  * @param temperature_out  Where to write the temperature float.
  * @param humidity_out     Where to write the relative humidity float.
+ * @return True if the read was successful, false otherwise
  */
 bool Adafruit_SHT31::readBoth(float *temperature_out, float *humidity_out) {
   if (!readTempHum()) {
