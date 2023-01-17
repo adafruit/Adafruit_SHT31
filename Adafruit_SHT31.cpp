@@ -202,12 +202,12 @@ static uint8_t crc8(const uint8_t *data, int len) {
 bool Adafruit_SHT31::readTempHum(void) {
   uint8_t readbuffer[6];
 
-  if ( !writeCommand(SHT31_MEAS_HIGHREP) )
+  if (!writeCommand(SHT31_MEAS_HIGHREP))
     return false;;
 
   delay(20);
 
-  if ( !i2c_dev->read(readbuffer, sizeof(readbuffer)) )
+  if (!i2c_dev->read(readbuffer, sizeof(readbuffer)))
     return false;
 
   if (readbuffer[2] != crc8(readbuffer, 2) ||
