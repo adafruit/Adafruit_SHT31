@@ -57,7 +57,7 @@ public:
   bool begin(uint8_t i2caddr = SHT31_DEFAULT_ADDR);
   float readTemperature(void);
   float readHumidity(void);
-  void readBoth(float *temperature_out, float *humidity_out);
+  bool readBoth(float *temperature_out, float *humidity_out);
   uint16_t readStatus(void);
   void reset(void);
   void heater(bool h);
