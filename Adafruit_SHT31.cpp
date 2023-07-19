@@ -149,15 +149,17 @@ float Adafruit_SHT31::readHumidity(void) {
  *
  * @param temperature_out  Where to write the temperature float.
  * @param humidity_out     Where to write the relative humidity float.
+ * @return True if the read was successful, false otherwise
  */
-void Adafruit_SHT31::readBoth(float *temperature_out, float *humidity_out) {
+bool Adafruit_SHT31::readBoth(float *temperature_out, float *humidity_out) {
   if (!readTempHum()) {
     *temperature_out = *humidity_out = NAN;
-    return;
+    return false;
   }
 
   *temperature_out = temp;
   *humidity_out = humidity;
+  return true;
 }
 
 /**
@@ -201,11 +203,13 @@ static uint8_t crc8(const uint8_t *data, int len) {
 bool Adafruit_SHT31::readTempHum(void) {
   uint8_t readbuffer[6];
 
-  writeCommand(SHT31_MEAS_HIGHREP);
+  if (!writeCommand(SHT31_MEAS_HIGHREP))
+    return false;
 
   delay(20);
 
-  i2c_dev->read(readbuffer, sizeof(readbuffer));
+  if (!i2c_dev->read(readbuffer, sizeof(readbuffer)))
+    return false;
 
   if (readbuffer[2] != crc8(readbuffer, 2) ||
       readbuffer[5] != crc8(readbuffer + 3, 2))
