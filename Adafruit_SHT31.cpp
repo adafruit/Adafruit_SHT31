@@ -73,36 +73,6 @@ bool Adafruit_SHT31::begin(uint8_t i2caddr) {
 }
 
 /**
- * Gets the ID register contents.
- *
- * @return The 32-bit ID register.
- */
-uint32_t Adafruit_SHT31::readSerial(void) {
-  writeCommand(SHT31_READSERIAL);  
-  delay(10);
-  
-  uint8_t reply[6];
-  if (!i2c_dev->read(reply, sizeof(reply))) {
-    return false;
-  }
-
-  if ((crc8(reply, 2) != reply[2]) || (crc8(reply + 3, 2) != reply[5])) {
-    return false;
-  }
-
-  uint32_t serial = 0;
-  serial = reply[0];
-  serial <<= 8;
-  serial |= reply[1];
-  serial <<= 8;
-  serial |= reply[3];
-  serial <<= 8;
-  serial |= reply[4];
-
-  return serial;
-}
-
-/**
  * Gets the current status register contents.
  *
  * @return The 16-bit status register.
@@ -223,6 +193,36 @@ static uint8_t crc8(const uint8_t *data, int len) {
     }
   }
   return crc;
+}
+
+/**
+ * Gets the ID register contents.
+ *
+ * @return The 32-bit ID register.
+ */
+uint32_t Adafruit_SHT31::readSerial(void) {
+  writeCommand(SHT31_READSERIAL);  
+  delay(10);
+  
+  uint8_t reply[6];
+  if (!i2c_dev->read(reply, sizeof(reply))) {
+    return false;
+  }
+
+  if ((crc8(reply, 2) != reply[2]) || (crc8(reply + 3, 2) != reply[5])) {
+    return false;
+  }
+
+  uint32_t serial = 0;
+  serial = reply[0];
+  serial <<= 8;
+  serial |= reply[1];
+  serial <<= 8;
+  serial |= reply[3];
+  serial <<= 8;
+  serial |= reply[4];
+
+  return serial;
 }
 
 /**
