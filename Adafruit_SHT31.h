@@ -42,6 +42,7 @@
 #define SHT31_HEATEREN 0x306D     /**< Heater Enable */
 #define SHT31_HEATERDIS 0x3066    /**< Heater Disable */
 #define SHT31_REG_HEATER_BIT 0x0d /**< Status Register Heater Bit */
+#define SHT31_READSERIAL 0x3780   /**< Read Out of Serial Register */
 
 extern TwoWire Wire; /**< Forward declarations of Wire for board/variant
                         combinations that don't have a default 'Wire' */
@@ -55,6 +56,7 @@ public:
   ~Adafruit_SHT31();
 
   bool begin(uint8_t i2caddr = SHT31_DEFAULT_ADDR);
+  uint32_t readSerial(void);
   float readTemperature(void);
   float readHumidity(void);
   bool readBoth(float *temperature_out, float *humidity_out);
