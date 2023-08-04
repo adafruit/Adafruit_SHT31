@@ -218,8 +218,8 @@ bool Adafruit_SHT31::readTempHum(void) {
   int32_t stemp = (int32_t)(((uint32_t)readbuffer[0] << 8) | readbuffer[1]);
   // simplified (65536 instead of 65535) integer version of:
   // temp = (stemp * 175.0f) / 65535.0f - 45.0f;
-  stemp = ((4375 * stemp) >> 14) - 4500;
-  temp = (float)stemp / 100.0f;
+  stemp = ((175.0f * (float)stemp) / 65535.0f) - 45.0f;
+  temp = (float)stemp;
 
   uint32_t shum = ((uint32_t)readbuffer[3] << 8) | readbuffer[4];
   // simplified (65536 instead of 65535) integer version of:
